@@ -71,33 +71,35 @@ authRouter.post('/signup', async (req, res) => {
             });
         }
 
-            const result = await Mongo.db
+        const result = await Mongo.db
+            .collection(collectionName)
+            .insertOne({
+                email: req.body.email,
+                password: derivedKey,
+                salt
+            });
+
+        if (result.insertedId) {
+            const user = await Mongo.db
                 .collection(collectionName)
-                .insertOne({
-                    email: req.body.email,
-                    password: derivedKey,
-                    salt
-                });
+                .findOne(
+                    { _id: new ObjectId(result.insertedId) });
 
-            if (result.insertedId) {
-                const user = await Mongo.db
-                    .collection(collectionName)
-                    .findOne({ _id: new ObjectId(result.insertedId) });
-
-            const token = jwt.sign({ user }, 'secret')
-        
-            return res.send({
-                success: true,
-                statuscode: 200,
-                body: {
-                    text: 'User registered successfully.',
-                    token,
-                    user,
-                    logged: true
-                }
-            })
-        }
-    })
+        const { password, salt, ...rest } = user;
+        const token = jwt.sign({ user: rest }, 'secret')
+    
+        return res.send({
+            success: true,
+            statuscode: 200,
+            body: {
+                text: 'User registered successfully.',
+                token,
+                user: rest,
+                logged: true
+            }
+        })
+    }
+})
 })
 
 
