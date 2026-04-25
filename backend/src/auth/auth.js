@@ -74,6 +74,7 @@ authRouter.post('/signup', async (req, res) => {
         const result = await Mongo.db
             .collection(collectionName)
             .insertOne({
+                fullname: req.body.fullname,
                 email: req.body.email,
                 password: derivedKey,
                 salt
