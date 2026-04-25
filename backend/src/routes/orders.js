@@ -15,7 +15,7 @@ ordersRouter.get('/', async (req, res) => {
     })
 })
 
-ordersRouter.get('/:id', async (req, res) => {
+ordersRouter.get('/userordes/:id', async (req, res) => {
     const { sucess, statuscode, body } = await orderController.getOrdersByUserId(req.params.id);
 
     res.status(statuscode).send({
