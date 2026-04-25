@@ -17,7 +17,7 @@ export default function Auth() {
             navigate('/profiles')
             return
         }
-        }, [])
+        }, [authData])
 
 
 
