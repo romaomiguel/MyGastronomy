@@ -83,18 +83,20 @@ authRouter.post('/signup', async (req, res) => {
             const user = await Mongo.db
                 .collection(collectionName)
                 .findOne(
-                    { _id: new ObjectId(result.insertedId) });
+                    { _id: new ObjectId(result.insertedId) },
+                    {projection: {
+                        password: 0,
+                        salt: 0
+                    }});
 
-        const { password, salt, ...rest } = user;
-        const token = jwt.sign({ user: rest }, 'secret')
-    
+        const token = jwt.sign(user, 'secret')
         return res.send({
             success: true,
             statuscode: 200,
             body: {
                 text: 'User registered successfully.',
                 token,
-                user: rest,
+                user,
                 logged: true
             }
         })

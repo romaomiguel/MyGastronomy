@@ -1,12 +1,24 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { TextField, Button } from '@mui/material'
 import styles from './auth.module.css'
 import authServices from '../../services/auth.jsx'
+import { useNavigate } from "react-router-dom"
+
 
 export default function Auth() {
     const [formType, setFormType] = useState('login')
     const [formData, setFormData] = useState(null)
     const { login, signup, authLoading } = authServices()
+    const navigate = useNavigate()
+    const authData = JSON.parse(localStorage.getItem('auth'))
+
+    useEffect(() => {
+        if(authData) {
+            navigate('/profiles')
+            return
+        }
+        }, [])
+
 
 
     const handleChangeFormType = () => {
@@ -64,7 +76,7 @@ export default function Auth() {
                     <TextField 
                         required
                         label='Password'
-                        type='text'
+                        type='password'
                         name='password'
                         value={formData?.password || ''}
                         onChange={handleFormDataChange}
