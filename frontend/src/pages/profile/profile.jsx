@@ -5,6 +5,7 @@ import { LuLogOut, LuTimer, LuCircleAlert, LuCircleCheckBig  } from "react-icons
 import authServices from "../../services/auth"
 import orderServices from "../../services/order"
 import styles  from "./profile.module.css"
+import Loading from  "../loading/loading"
 
 export default function Profile() {
     const { logout } = authServices()
@@ -24,7 +25,7 @@ export default function Profile() {
 
 
     if(orderLoading) {
-        return( <h1>Loading...</h1>)
+        return( <Loading />)
     }
  
 
