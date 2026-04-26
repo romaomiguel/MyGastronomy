@@ -1,10 +1,10 @@
 import { useEffect } from "react"
 import { useNavigate } from 'react-router-dom'
+import { Link } from "react-router-dom"
+import { LuLogOut, LuTimer, LuCircleAlert, LuCircleCheckBig  } from "react-icons/lu";
 import authServices from "../../services/auth"
 import orderServices from "../../services/order"
 import styles  from "./profile.module.css"
-import { LuLogOut, LuTimer, LuCircleAlert, LuCircleCheckBig  } from "react-icons/lu";
-
 
 export default function Profile() {
     const { logout } = authServices()
@@ -64,8 +64,9 @@ export default function Profile() {
                     ))}
                 </div>
             : 
-            <div>
-                You do not have orders yet
+            <div className={styles.containerLink}>
+                You do not have orders yet.
+                <Link to={'/plates'} className={styles.platesLink}>Click hero and see our specialities</Link>
             </div>
             }
         </div>
