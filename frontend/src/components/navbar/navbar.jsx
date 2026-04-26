@@ -17,7 +17,7 @@ export default function Navbar() {
         <nav className={styles.navbarContainer}>
             <div className={styles.navbarItems}>
                 <Link to={'/'}>
-                    <img src="/logo.png" alt="Logo My Gastronomy" className={styles.logo} />
+                    <img src="/imgs/logo.png" alt="Logo My Gastronomy" className={styles.logo} />
                 </Link>
 
                 <div className={styles.navbarLinksContainer}>
