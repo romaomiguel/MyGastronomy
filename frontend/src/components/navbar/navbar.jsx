@@ -34,7 +34,7 @@ export default function Navbar() {
         
             <div className={styles.mobileNavbarItems}>
                 <Link to={'/'}>
-                    <img src="/logo.png" alt="Logo My Gastronomy" className={styles.logo} />
+                    <img src="/imgs/logo.png" alt="Logo My Gastronomy" className={styles.logo} />
                 </Link>
 
                 <div className={styles.mobileNavbarBtns}>

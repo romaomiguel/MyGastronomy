@@ -40,7 +40,7 @@ export default function Profile() {
         <div className={styles.profileContainer}>
             <div>
                 <h1>{authData?.user?.fullname}</h1>
-                <h1>{authData?.user?.email}</h1>    
+                <p>{authData?.user?.email}</p>    
             </div>
 
             <button onClick={handleLogout}>Logout <LuLogOut /></button>
